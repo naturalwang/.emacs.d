@@ -204,6 +204,9 @@
             (unless (server-running-p)
               (server-start))))
 
+;; show line numbers
+(global-display-line-numbers-mode)
+
 ;; Variables configured via the interactive 'customize' interface
 (when (file-exists-p custom-file)
   (load custom-file))
