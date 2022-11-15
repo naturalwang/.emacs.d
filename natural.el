@@ -2,7 +2,6 @@
 (require 'package)
 (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; (package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -16,11 +15,10 @@
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; Natural: Custom config
-;; Todo: better to move this part to a single file
+;; set font size
 (set-face-attribute 'default nil :height 180)
 
-;; 用 C - d 来 duplicate line
+;; Add shortcut 'C-d' to duplicate line
 (defun duplicate-line (arg)
   "Duplicate current line, leaving point in lower line."
   (interactive "*p")
@@ -53,22 +51,15 @@
       (setq buffer-undo-list (cons (cons eol (point)) buffer-undo-list)))
     ) ; end-of-let
 
-  ;; put the point in the lowest line and return
-  (next-line arg))
+;; put the point in the lowest line and return
+(next-line arg))
 (global-set-key (kbd "C-c d") 'duplicate-line)
 
-
-;; Allow access from emacsclient
-(add-hook 'after-init-hook
-          (lambda ()
-            (require 'server)
-            (unless (server-running-p)
-              (server-start))))
 
 ;; show line numbers
 (global-display-line-numbers-mode)
 
-;; autosave: should be in custom files
+;; autosave package
 (use-package super-save
   :ensure t
   :config

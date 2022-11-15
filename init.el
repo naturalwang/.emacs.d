@@ -155,6 +155,14 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+;; Allow access from emacsclient
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
+
+;; Natural: Add custom file
 (setq natural-file (locate-user-emacs-file "natural.el"))
 (when (file-exists-p natural-file)
   (load natural-file))
