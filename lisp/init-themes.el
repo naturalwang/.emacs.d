@@ -53,6 +53,7 @@
       (not (display-graphic-p)))
     (add-to-list 'dimmer-exclusion-predicates 'sanityinc/display-non-graphic-p)))
 
+;; (load-theme 'atom-one-dark t)
 
 (provide 'init-themes)
 ;;; init-themes.el ends here

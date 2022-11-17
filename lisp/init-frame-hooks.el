@@ -25,6 +25,18 @@ Selectively runs either `after-make-console-frame-hooks' or
           (lambda () (when sanityinc/initial-frame
                   (run-after-make-frame-hooks sanityinc/initial-frame))))
 
+;; Natural: open new window(frame) in the center of screen
+;; Solution from: https://christiantietze.de/posts/2021/06/emacs-center-window/
+(defun my/frame-recenter (&optional frame)
+  "Center FRAME on the screen.
+FRAME can be a frame name, a terminal name, or a frame.
+If FRAME is omitted or nil, use currently selected frame."
+  (interactive)
+  (unless (eq 'maximised (frame-parameter nil 'fullscreen))
+    (modify-frame-parameters
+     frame '((user-position . t) (top . 0.5) (left . 0.5)))))
+
+(add-hook 'after-make-frame-functions 'my/frame-recenter)
 
 (provide 'init-frame-hooks)
 ;;; init-frame-hooks.el ends here

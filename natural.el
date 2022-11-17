@@ -1,8 +1,3 @@
-;; setup use-package
-(require 'package)
-(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -12,8 +7,9 @@
 
 
 ;; better org mode appearance
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(use-package org-bullets
+:config
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;; set font size
 (set-face-attribute 'default nil :height 180)
@@ -21,9 +17,13 @@
 ;; Add shortcut 'C-d' to duplicate line
 (defun duplicate-line (arg)
   "Duplicate current line, leaving point in lower line."
+  ; TODO: what *p means?
+  ; Set Default argument: p means 1, P means nil
+  ; but not sure what * means
   (interactive "*p")
 
   ;; save the point for undo
+  ; Natural: setq buffer-undo-list == set 'buffer-undo-list
   (setq buffer-undo-list (cons (point) buffer-undo-list))
 
   ;; local variables for start and end of line
