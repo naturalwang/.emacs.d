@@ -6,10 +6,23 @@
         use-package-expand-minimally t))
 
 
+;; auto complete
+(use-package company
+  :hook (after-init . global-company-mode)
+  :config (setq company-minimum-prefix-length 1
+                company-show-quick-access t))
+
+
 ;; better org mode appearance
 (use-package org-bullets
-:config
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+
+;; better window jump
+;; (use-package ace-window 
+;;     :bind (("M-o" . 'ace-window)))
+
 
 ;; set font size
 (set-face-attribute 'default nil :height 180)

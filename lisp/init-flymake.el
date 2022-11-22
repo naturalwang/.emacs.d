@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Natural: flymake is a package for grammer check
 (maybe-require-package 'flymake "1.2.1")
 
 ;; Use flycheck checkers with flymake, to extend its coverage
